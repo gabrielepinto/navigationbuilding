@@ -64,7 +64,7 @@ end_room = st.sidebar.selectbox("Punto di arrivo", list(g.nomi_belli.unique()))
 #end_room = st.sidebar.selectbox("End Room", list(G.nodes))
 
 # Button to find the route
-if st.sidebar.button("Find Route"):
+if st.sidebar.button("Trova il percorso"):
     try:
         ### utilizza nomi databse per la funzione
         start_room=diz_nomi_stanze[start_room]
