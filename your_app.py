@@ -142,6 +142,21 @@ if st.sidebar.button("Trova il percorso"):
                 z = [floor] * 4
                 verts = [list(zip(x, y, z))]
                 axs.text(x=28, y=10, s=f"Piano {floor}", z=floor, fontsize=4, color=colors_dict[floor])
+                #axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1))
+
+                ### shadow corridor
+                rooms=g.loc[g["room"].apply(lambda x:(x[0].isdigit())&(x[0]=="1")),["room","corridoio","x","y"]].drop_duplicates()
+                max_x=rooms.groupby("corridoio")["x"].max()
+                max_y=rooms.groupby("corridoio")["y"].max()
+                min_x=rooms.groupby("corridoio")["x"].min()
+                min_y=rooms.groupby("corridoio")["y"].min()
+                for corridoio in max_x.index:
+                    x = [min_x[corridoio]-1,min_x[corridoio]-1,max_x[corridoio]+1,max_x[corridoio]+1]
+                    y = [min_y[corridoio]-1,max_y[corridoio]+1,min_y[corridoio]+1,max_y[corridoio]-1]
+                    z = [floor]*4
+                    verts = [list(zip(x,y,z))]
+                    axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1,linewidth=0.01))
+
 
             st.pyplot(fig)
     except nx.NetworkXNoPath:
