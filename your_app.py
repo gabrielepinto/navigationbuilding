@@ -90,13 +90,13 @@ if st.sidebar.button("Trova il percorso"):
         # Visualization
         path = shortest_path
         if path:
-            multip=15
+            multip=20
             fig = plt.figure(figsize=(10,14))
             axs = fig.add_subplot(111, projection='3d')
-            axs.text(15, 15, 0.0, "Via XX Settembre",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
-            axs.text(15, -4, 0.0, "Via Cernaia",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
-            axs.text(0.8, 4, 0.0, "Via Pastrengo",zdir="y", color="blue",horizontalalignment="center",fontsize=6)
-            axs.text(35, 4, 0.0, "Via Goito",zdir="y", color="blue",horizontalalignment="center",fontsize=6)
+            axs.text(15, 15, 0.0, "Via XX Settembre",zdir="x", color="blue",horizontalalignment="center",fontsize=12)
+            axs.text(15, -4, 0.0, "Via Cernaia",zdir="x", color="blue",horizontalalignment="center",fontsize=12)
+            axs.text(0.8, 4, 0.0, "Via Pastrengo",zdir="y", color="blue",horizontalalignment="center",fontsize=12)
+            axs.text(35, 4, 0.0, "Via Goito",zdir="y", color="blue",horizontalalignment="center",fontsize=12)
             # Plot path
             for i in range(0, len(path) - 1):
                 room1, room2 = path[i], path[i + 1]
@@ -126,11 +126,11 @@ if st.sidebar.button("Trova il percorso"):
                     #axs.scatter(x, y, z*multip, color=colors_dict[z], s=20)
                     pass
                 if ("scala" in room) & ("1" in room):
-                    axs.text(x * 1.05, y, z*multip, s=room[0:7], color="red",fontsize=4)
+                    axs.text(x * 1.05, y, z*multip, s=room[0:7], color="red",fontsize=12)
                 
                 if room in [start_room, end_room]:
                     if "scala" not in room:
-                        axs.text(x * 1.05, y, z*multip, s=room.split("_room")[0], fontsize=4)
+                        axs.text(x * 1.05, y, z*multip, s=room.split("_room")[0], fontsize=12)
                     axs.scatter(x, y, z*multip, color="red" if room==start_room else "blue", s=70)
                 
             axs.set_xticks([])
@@ -145,7 +145,7 @@ if st.sidebar.button("Trova il percorso"):
                 y = [0, 15, 15, 0]
                 z = [floor*multip] * 4
                 verts = [list(zip(x, y, z))]
-                axs.text(x=28, y=10, s=f"Piano {floor}", z=floor, fontsize=4, color=colors_dict[floor])
+                axs.text(x=28, y=10, s=f"Piano {floor}", z=floor*multip, fontsize=12, color=colors_dict[floor])
                 #axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1))
 
                 ### shadow corridor
