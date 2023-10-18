@@ -42,7 +42,7 @@ for u, v in G.edges:
             G[u][v]['weight'] = 20.0  # Adjust the weight as needed
 
 # Create a Streamlit app
-st.title("Graph Visualization App")
+st.title("Trova percorso al palazzo delle finanze")
 
 # Sidebar with user input
 st.sidebar.subheader("Choose Start and End Rooms")
@@ -104,7 +104,7 @@ if st.sidebar.button("Find Route"):
 
                 if room in [start_room, end_room]:
                     if "scala" not in room:
-                        axs.text(x * 1.05, y, z, s=room.split("_room")[0], fontsize=15)
+                        axs.text(x * 1.05, y, z, s=room.split("_room")[0], fontsize=12)
                     axs.scatter(x, y, z, color=colors_dict[z], s=200)
 
             axs.set_xticks([])
@@ -119,7 +119,7 @@ if st.sidebar.button("Find Route"):
                 y = [0, 15, 15, 0]
                 z = [floor] * 4
                 verts = [list(zip(x, y, z))]
-                axs.text(x=28, y=10, s=f"Piano {floor}", z=floor, fontsize=18, color=colors_dict[floor])
+                axs.text(x=28, y=10, s=f"Piano {floor}", z=floor, fontsize=12, color=colors_dict[floor])
 
             st.pyplot(fig)
     except nx.NetworkXNoPath:
