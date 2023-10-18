@@ -6,7 +6,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 # Load your data
-g = pd.read_excel("esempio_stanze_v3.xlsx")
+g = pd.read_csv("esempio_stanze_v3.csv")
 g["room"] = g["room"].apply(lambda x: str(x) + "_room")
 g["link"] = g["link"].apply(lambda x: str(x) + "_room")
 g["xy"] = g[["x", "y"]].apply(lambda x: list(x), axis=1)
