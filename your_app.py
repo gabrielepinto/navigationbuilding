@@ -88,12 +88,12 @@ if st.sidebar.button("Find Route"):
                 if (("scala" in room1) & ("scala" in room2)) == False:
                     x1, y1, z1 = nodes_with_z[room1]
                     x2, y2, z2 = nodes_with_z[room2]
-                    axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.4)
+                    axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
                 else:
                     if room1[7] == room2[7]:
                         x1, y1, z1 = nodes_with_z[room1]
                         x2, y2, z2 = nodes_with_z[room2]
-                        axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.4)
+                        axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
 
             for room, (x, y, z) in nodes_with_z.items():
                 if room in path:
@@ -101,12 +101,12 @@ if st.sidebar.button("Find Route"):
 
                 if ("scala" in room) & ("1" in room):
                     axs.text(x * 1.05, y, z, s=room[0:7], fontsize=8)
-
+                i=0
                 if room in [start_room, end_room]:
                     if "scala" not in room:
                         axs.text(x * 1.05, y, z, s=room.split("_room")[0], fontsize=8)
-                    axs.scatter(x, y, z, color=colors_dict[z], s=200)
-
+                    axs.scatter(x, y, z, color="red" if i==0 else "blue", s=70)
+                    i+=1
             axs.set_xticks([])
             axs.set_yticks([])
             axs.set_zticks([])
