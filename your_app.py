@@ -3,6 +3,8 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
 import numpy as np
 
 # Load your data
