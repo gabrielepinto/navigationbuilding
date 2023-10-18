@@ -91,7 +91,7 @@ if st.sidebar.button("Trova il percorso"):
         path = shortest_path
         if path:
             multip=20
-            fig = plt.figure(figsize=(10,18))
+            fig = plt.figure(figsize=(15,25))
             axs = fig.add_subplot(111, projection='3d')
             axs.text(15, 15, 0.0, "Via XX Settembre",zdir="x", color="blue",horizontalalignment="center",fontsize=12)
             axs.text(15, -4, 0.0, "Via Cernaia",zdir="x", color="blue",horizontalalignment="center",fontsize=12)
