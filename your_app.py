@@ -92,7 +92,7 @@ if st.sidebar.button("Trova il percorso"):
             axs.text(15, 15, 0.0, "Via XX Settembre",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
             axs.text(15, -4, 0.0, "Via Cernaia",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
             axs.text(0.8, 4, 0.0, "Via Pastrengo",zdir="y", color="blue",horizontalalignment="center",fontsize=6)
-            axs.text(30+3, 4, 0.0, "Via Goito",zdir="y", color="blue",horizontalalignment="center",fontsize=6)
+            axs.text(35, 4, 0.0, "Via Goito",zdir="y", color="blue",horizontalalignment="center",fontsize=6)
             # Plot path
             for i in range(0, len(path) - 1):
                 room1, room2 = path[i], path[i + 1]
