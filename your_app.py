@@ -45,15 +45,30 @@ for u, v in G.edges:
 st.title("Trova percorso al palazzo delle finanze")
 
 # Sidebar with user input
-st.sidebar.subheader("Choose Start and End Rooms")
+st.sidebar.subheader("Indica punto di partenza e punto di arrivo")
+
+# dizionario nomi
+g["nomi_belli"]=g["room"].apply(lambda x:x.split("_room")[0])
+g["nomi_belli"]=g["nomi_belli"].apply(lambda x:x[0:6]+""+x[6].upper()+" piano "+x[7] if "scala" in x else x)
+diz_nomi_stanze=dict(g[["nomi_belli","room"]].values)
 
 # Dropdown menus to select start and end rooms
-start_room = st.sidebar.selectbox("Start Room", list(G.nodes))
-end_room = st.sidebar.selectbox("End Room", list(G.nodes))
+
+
+start_room = st.sidebar.selectbox("Start Room", list(g.nomi_belli.unique()))
+end_room = st.sidebar.selectbox("End Room", list(g.nomi_belli.unique()))
+
+
+#start_room = st.sidebar.selectbox("Start Room", list(G.nodes))
+#end_room = st.sidebar.selectbox("End Room", list(G.nodes))
 
 # Button to find the route
 if st.sidebar.button("Find Route"):
     try:
+        ### utilizza nomi databse per la funzione
+        start_room=diz_nomi_stanze[start_room]
+        end_room=diz_nomi_stanze[end_room]
+        ### vai
         shortest_path = nx.shortest_path(G, source=start_room, target=end_room, weight='weight')
         shortest_distance = nx.shortest_path_length(G, source=start_room, target=end_room, weight='weight')
 
