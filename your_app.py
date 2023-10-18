@@ -67,6 +67,8 @@ end_room = st.sidebar.selectbox("Punto di arrivo", list(g.nomi_belli.unique()))
 
 # Button to find the route
 if st.sidebar.button("Trova il percorso"):
+    max_piano=g.loc[g["room"].isin([start_room,end_room]),"piano"].max()
+    gplot=g.loc[g["piano"]<=max_piano]
     try:
         
         ### utilizza nomi databse per la funzione
@@ -105,7 +107,7 @@ if st.sidebar.button("Trova il percorso"):
                 axs.plot([x1, x2], [y1, y2], [z1*multip, z2*multip], 'k-', linewidth=3)
 
             # Plot corridors
-            for i, rr in g.iterrows():
+            for i, rr in gplot.iterrows():
                 room1, room2 = rr["room"], rr["link"]
                 if (("scala" in room1) & ("scala" in room2)) == False:
                     x1, y1, z1 = nodes_with_z[room1]
@@ -140,7 +142,7 @@ if st.sidebar.button("Trova il percorso"):
             axs.set_xlim(0, 30)
             axs.set_zlim(0, 50)
 
-            for floor in range(0, 4):
+            for floor in range(0, gplot.piano.max()):
                 x = [0, 0, 30, 30]
                 y = [0, 15, 15, 0]
                 z = [floor*multip] * 4
@@ -149,7 +151,7 @@ if st.sidebar.button("Trova il percorso"):
                 #axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1))
 
                 ### shadow corridor
-                rooms=g.loc[g["room"].apply(lambda x:(x[0].isdigit())&(x[0]=="1")),["room","corridoio","x","y"]].drop_duplicates()
+                rooms=gplot.loc[gplot["room"].apply(lambda x:(x[0].isdigit())&(x[0]=="1")),["room","corridoio","x","y"]].drop_duplicates()
                 max_x=rooms.groupby("corridoio")["x"].max()
                 max_y=rooms.groupby("corridoio")["y"].max()
                 min_x=rooms.groupby("corridoio")["x"].min()
