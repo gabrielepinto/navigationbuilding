@@ -101,12 +101,12 @@ if st.sidebar.button("Find Route"):
 
                 if ("scala" in room) & ("1" in room):
                     axs.text(x * 1.05, y, z, s=room[0:7], fontsize=8)
-                i=0
+                
                 if room in [start_room, end_room]:
                     if "scala" not in room:
                         axs.text(x * 1.05, y, z, s=room.split("_room")[0], fontsize=8)
-                    axs.scatter(x, y, z, color="red" if i==0 else "blue", s=70)
-                    i+=1
+                    axs.scatter(x, y, z, color="red" if room==start_room else "blue", s=70)
+                
             axs.set_xticks([])
             axs.set_yticks([])
             axs.set_zticks([])
