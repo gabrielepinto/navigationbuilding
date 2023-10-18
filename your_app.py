@@ -91,7 +91,7 @@ if st.sidebar.button("Trova il percorso"):
         path = shortest_path
         if path:
             multip=15
-            fig = plt.figure()
+            fig = plt.figure(figsize=(10,14))
             axs = fig.add_subplot(111, projection='3d')
             axs.text(15, 15, 0.0, "Via XX Settembre",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
             axs.text(15, -4, 0.0, "Via Cernaia",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
@@ -138,7 +138,7 @@ if st.sidebar.button("Trova il percorso"):
             axs.set_zticks([])
             axs.set_ylim(0, 15)
             axs.set_xlim(0, 30)
-            axs.set_zlim(0, 30)
+            axs.set_zlim(0, 35)
 
             for floor in range(0, 4):
                 x = [0, 0, 30, 30]
