@@ -109,6 +109,8 @@ if st.sidebar.button("Trova il percorso"):
                         x1, y1, z1 = nodes_with_z[room1]
                         x2, y2, z2 = nodes_with_z[room2]
                         axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
+                ### this is to plot in any case:
+                axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
             ### plot points
             for room, (x, y, z) in nodes_with_z.items():
                 if room in path:
