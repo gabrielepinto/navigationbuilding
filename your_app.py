@@ -67,13 +67,17 @@ end_room = st.sidebar.selectbox("Punto di arrivo", list(g.nomi_belli.unique()))
 
 # Button to find the route
 if st.sidebar.button("Trova il percorso"):
-    max_piano=g.loc[g["room"].isin([start_room,end_room]),"piano"].max()
-    gplot=g.loc[g["piano"]<=max_piano]
+    
     try:
         
         ### utilizza nomi databse per la funzione
         start_room=diz_nomi_stanze[start_room]
         end_room=diz_nomi_stanze[end_room]
+
+        ## filtra db con piano massimo
+        max_piano=g.loc[g["room"].isin([start_room,end_room]),"piano"].max()
+        gplot=g.loc[g["piano"]<=max_piano]
+        
         ### vai
         shortest_path = nx.shortest_path(G, source=start_room, target=end_room, weight='weight')
         shortest_distance = nx.shortest_path_length(G, source=start_room, target=end_room, weight='weight')
