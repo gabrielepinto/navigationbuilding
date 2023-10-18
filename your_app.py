@@ -50,13 +50,14 @@ st.sidebar.subheader("Indica punto di partenza e punto di arrivo")
 # dizionario nomi
 g["nomi_belli"]=g["room"].apply(lambda x:x.split("_room")[0])
 g["nomi_belli"]=g["nomi_belli"].apply(lambda x:x[0:6]+""+x[6].upper()+" piano "+x[7] if "scala" in x else x)
+g["nomi_belli"]=g["nomi_belli"].apply(lambda x:"stanza " + str(x) if x[0].isdigit() else x) 
 diz_nomi_stanze=dict(g[["nomi_belli","room"]].values)
 
 # Dropdown menus to select start and end rooms
 
 
-start_room = st.sidebar.selectbox("Start Room", list(g.nomi_belli.unique()))
-end_room = st.sidebar.selectbox("End Room", list(g.nomi_belli.unique()))
+start_room = st.sidebar.selectbox("Punto di partenza", list(g.nomi_belli.unique()))
+end_room = st.sidebar.selectbox("Punto di arrivo", list(g.nomi_belli.unique()))
 
 
 #start_room = st.sidebar.selectbox("Start Room", list(G.nodes))
