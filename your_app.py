@@ -138,7 +138,7 @@ if st.sidebar.button("Trova il percorso"):
             axs.set_zticks([])
             axs.set_ylim(0, 15)
             axs.set_xlim(0, 30)
-            axs.set_zlim(0, 35)
+            axs.set_zlim(0, 50)
 
             for floor in range(0, 4):
                 x = [0, 0, 30, 30]
