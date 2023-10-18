@@ -156,10 +156,11 @@ if st.sidebar.button("Trova il percorso"):
                 min_y=rooms.groupby("corridoio")["y"].min()
                 for corridoio in max_x.index:
                     x = [min_x[corridoio]-1,min_x[corridoio]-1,max_x[corridoio]+1,max_x[corridoio]+1]
-                    y = [min_y[corridoio]-1,max_y[corridoio]+1,min_y[corridoio]+1,max_y[corridoio]-1]
+                    y = [min_y[corridoio]-1,max_y[corridoio]+1,max_y[corridoio]+1,min_y[corridoio]-1]
                     z = [floor*multip]*4
                     verts = [list(zip(x,y,z))]
                     axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1,linewidth=0.01))
+
 
 
             st.pyplot(fig)
