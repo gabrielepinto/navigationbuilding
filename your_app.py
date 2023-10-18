@@ -93,11 +93,11 @@ if st.sidebar.button("Find Route"):
                         x1, y1, z1 = nodes_with_z[room1]
                         x2, y2, z2 = nodes_with_z[room2]
                         axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
-
+            ### plot points
             for room, (x, y, z) in nodes_with_z.items():
                 if room in path:
-                    axs.scatter(x, y, z, color=colors_dict[z], s=20)
-
+                    #axs.scatter(x, y, z, color=colors_dict[z], s=20)
+                    pass
                 if ("scala" in room) & ("1" in room):
                     axs.text(x * 1.05, y, z, s=room[0:7], color="red",fontsize=4)
                 
