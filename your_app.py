@@ -142,7 +142,7 @@ if st.sidebar.button("Trova il percorso"):
             axs.set_xlim(0, 30)
             axs.set_zlim(0, 50)
 
-            for floor in range(0, gplot.piano.max()):
+            for floor in range(0, gplot["piano"].max()):
                 x = [0, 0, 30, 30]
                 y = [0, 15, 15, 0]
                 z = [floor*multip] * 4
