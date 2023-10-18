@@ -57,8 +57,7 @@ if st.sidebar.button("Find Route"):
         shortest_path = nx.shortest_path(G, source=start_room, target=end_room, weight='weight')
         shortest_distance = nx.shortest_path_length(G, source=start_room, target=end_room, weight='weight')
 
-        st.write(f"Shortest path from {start_room} to {end_room}: {shortest_path}")
-        st.write(f"Shortest distance: {shortest_distance}")
+        #st.write(f"Per andare dalla stanza {start_room} alla stanza {end_room}: {shortest_path}")
 
         # Visualization
         nodes_with_z = {}
@@ -67,7 +66,7 @@ if st.sidebar.button("Find Route"):
         for i, s in leva_un_piano.iterrows():
             nodes_with_z[s["room"]] = s[["x", "y", "piano"]].to_list()
 
-        colors_dict = dict({0: "black", 1: "red", 2: "blue", 3: "green"})
+        colors_dict = dict({0: "black", 1: "black", 2: "black", 3: "black"})
 
         # Visualization
         path = shortest_path
@@ -97,10 +96,10 @@ if st.sidebar.button("Find Route"):
 
             for room, (x, y, z) in nodes_with_z.items():
                 if room in path:
-                    axs.scatter(x, y, z, color=colors_dict[z], s=50)
+                    axs.scatter(x, y, z, color=colors_dict[z], s=20)
 
                 if ("scala" in room) & ("1" in room):
-                    axs.text(x * 1.05, y, z, s=room[0:7], fontsize=4)
+                    axs.text(x * 1.05, y, z, s=room[0:7], color="red",fontsize=4)
                 
                 if room in [start_room, end_room]:
                     if "scala" not in room:
