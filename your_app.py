@@ -68,6 +68,7 @@ end_room = st.sidebar.selectbox("Punto di arrivo", list(g.nomi_belli.unique()))
 # Button to find the route
 if st.sidebar.button("Trova il percorso"):
     try:
+        
         ### utilizza nomi databse per la funzione
         start_room=diz_nomi_stanze[start_room]
         end_room=diz_nomi_stanze[end_room]
@@ -89,6 +90,7 @@ if st.sidebar.button("Trova il percorso"):
         # Visualization
         path = shortest_path
         if path:
+            multip=15
             fig = plt.figure()
             axs = fig.add_subplot(111, projection='3d')
             axs.text(15, 15, 0.0, "Via XX Settembre",zdir="x", color="blue",horizontalalignment="center",fontsize=6)
@@ -100,7 +102,7 @@ if st.sidebar.button("Trova il percorso"):
                 room1, room2 = path[i], path[i + 1]
                 x1, y1, z1 = nodes_with_z[room1]
                 x2, y2, z2 = nodes_with_z[room2]
-                axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', linewidth=3)
+                axs.plot([x1, x2], [y1, y2], [z1*multip, z2*multip], 'k-', linewidth=3)
 
             # Plot corridors
             for i, rr in g.iterrows():
@@ -108,40 +110,40 @@ if st.sidebar.button("Trova il percorso"):
                 if (("scala" in room1) & ("scala" in room2)) == False:
                     x1, y1, z1 = nodes_with_z[room1]
                     x2, y2, z2 = nodes_with_z[room2]
-                    axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
+                    axs.plot([x1, x2], [y1, y2], [z1*multip, z2*multip], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
                 else:
                     if room1[7] == room2[7]:
                         x1, y1, z1 = nodes_with_z[room1]
                         x2, y2, z2 = nodes_with_z[room2]
-                        axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
+                        axs.plot([x1, x2], [y1, y2], [z1*multip, z2*multip], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
                 ### this is to plot in any case:
                 x1, y1, z1 = nodes_with_z[room1]
                 x2, y2, z2 = nodes_with_z[room2]
-                axs.plot([x1, x2], [y1, y2], [z1, z2], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
+                axs.plot([x1, x2], [y1, y2], [z1*multip, z2*multip], 'k-', color=colors_dict[rr["piano"] - 1], alpha=0.2)
             ### plot points
             for room, (x, y, z) in nodes_with_z.items():
                 if room in path:
-                    #axs.scatter(x, y, z, color=colors_dict[z], s=20)
+                    #axs.scatter(x, y, z*multip, color=colors_dict[z], s=20)
                     pass
                 if ("scala" in room) & ("1" in room):
-                    axs.text(x * 1.05, y, z, s=room[0:7], color="red",fontsize=4)
+                    axs.text(x * 1.05, y, z*multip, s=room[0:7], color="red",fontsize=4)
                 
                 if room in [start_room, end_room]:
                     if "scala" not in room:
-                        axs.text(x * 1.05, y, z, s=room.split("_room")[0], fontsize=4)
-                    axs.scatter(x, y, z, color="red" if room==start_room else "blue", s=70)
+                        axs.text(x * 1.05, y, z*multip, s=room.split("_room")[0], fontsize=4)
+                    axs.scatter(x, y, z*multip, color="red" if room==start_room else "blue", s=70)
                 
             axs.set_xticks([])
             axs.set_yticks([])
             axs.set_zticks([])
             axs.set_ylim(0, 15)
             axs.set_xlim(0, 30)
-            axs.set_zlim(0, 3)
+            axs.set_zlim(0, 30)
 
             for floor in range(0, 4):
                 x = [0, 0, 30, 30]
                 y = [0, 15, 15, 0]
-                z = [floor] * 4
+                z = [floor*multip] * 4
                 verts = [list(zip(x, y, z))]
                 axs.text(x=28, y=10, s=f"Piano {floor}", z=floor, fontsize=4, color=colors_dict[floor])
                 #axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1))
@@ -155,7 +157,7 @@ if st.sidebar.button("Trova il percorso"):
                 for corridoio in max_x.index:
                     x = [min_x[corridoio]-1,min_x[corridoio]-1,max_x[corridoio]+1,max_x[corridoio]+1]
                     y = [min_y[corridoio]-1,max_y[corridoio]+1,min_y[corridoio]+1,max_y[corridoio]-1]
-                    z = [floor]*4
+                    z = [floor*multip]*4
                     verts = [list(zip(x,y,z))]
                     axs.add_collection3d(Poly3DCollection(verts,color=colors_dict[floor],alpha=0.1,linewidth=0.01))
 
