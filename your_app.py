@@ -137,7 +137,7 @@ if st.sidebar.button("Trova il percorso"):
                 if room in [start_room, end_room]:
                     #if "scala" not in room:
                     #    axs.text(x * 1.05, y, z*multip, s=room.split("_room")[0], fontsize=12)
-                    axs.text(x * 1.05, y, z*multip, s="Partenza" if room==start_room else "Arrivo", fontsize=12)
+                    axs.text(x * 1.05, y, z*multip, s="Partenza" if room==start_room else "Arrivo",background_color="white", fontsize=12)
                     axs.scatter(x, y, z*multip, color="red" if room==start_room else "blue", s=70)
                 
             axs.set_xticks([])
