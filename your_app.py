@@ -129,7 +129,7 @@ if st.sidebar.button("Trova il percorso"):
             ### plot points
             for room, (x, y, z) in nodes_with_z.items():
                 if room in path:
-                    axs.scatter(x, y, z*multip, color=colors_dict[z], s=20)
+                    axs.scatter(x, y, z*multip, color=colors_dict[z], s=30)
                     
                 if ("scala" in room) & ("1" in room):
                     axs.text(x * 1.05, y, z*multip, s=room[0:7], color="red",fontsize=12)
