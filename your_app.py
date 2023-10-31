@@ -45,7 +45,8 @@ for u, v in G.edges:
 
 # Create a Streamlit app
 st.title("Trova percorso al palazzo delle finanze")
-
+st.subheader("<<--- Selezionare il punto di partenza e di arrivo dal menù in alto a sinistra")
+st.text("n.b. i dati sulla posizione dei corridoio e le stanze utilizzati in questa app sono esemplificativi")
 # Sidebar with user input
 st.sidebar.subheader("Indica punto di partenza e punto di arrivo")
 
