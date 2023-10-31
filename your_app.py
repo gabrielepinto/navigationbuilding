@@ -47,6 +47,9 @@ for u, v in G.edges:
 st.title("Trova percorso al palazzo delle finanze")
 st.subheader("<<--- Selezionare il punto di partenza e di arrivo dal menù in alto a sinistra")
 st.text("n.b. i dati sulla posizione dei corridoio e le stanze utilizzati in questa app sono esemplificativi")
+st.text("al momento l'applicazione produce solo un'immagine statica che può essere ingrandita cliccando sul tasto ingrandisci in alto a destra -->")
+
+st.text("per maggiori info: gabriele.pinto@mef.gov.it")
 # Sidebar with user input
 st.sidebar.subheader("Indica punto di partenza e punto di arrivo")
 
